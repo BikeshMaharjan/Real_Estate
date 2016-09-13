@@ -1,0 +1,86 @@
+﻿@model IEnumerable<AngularMVC.DAL.Property_Detail>
+
+@{
+    ViewBag.Title = "SearchProperty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.Partial("_PartialSidebar")
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Featured Property</h2>
+
+
+
+                    <div ng-app="RealEstateApp">
+
+                       
+
+
+                        <div>
+                            <div>
+                                @foreach (var item in Model)
+                                {
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Upload/Property/thumb/@item.img1" alt="" />
+                                                <h2>Rs. @item.Price</h2>
+                                                <p>@item.Title</p>
+                                                <p>@item.District</p>
+                                                <a href="@Url.Action("Detail", "Property", new { area = "", id = item.PropertyId})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>BID NOW</a>
+                                            </div>
+                                            <div class="product-overlay">
+                                                <div class="overlay-content">
+                                                    <h2>Rs. @item.Price</h2>
+                                                    <p>@item.Title</p>
+
+                                                    <a href="@Url.Action("Detail", "Property", new { area = "", id = item.PropertyId})"
+                                                       class="btn btn-default add-to-cart">
+                                                        <i class="fa fa-shopping-cart">
+                                                        </i>BID NOW
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="choose">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li>
+                                                    <a ng-href="@Url.Action("Detail", "Property", new { area = "", id = item.PropertyId})">
+                                                        <i class="fa fa-plus-square"></i>Read More
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Action("Detail", "Property", new { area = "", id = item.PropertyId})">
+                                                        <i class="fa fa-plus-square"></i>BID NOW
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div><!--features_items-->
+
+
+
+            </div>
+        </div>
+    </div>
+</section>

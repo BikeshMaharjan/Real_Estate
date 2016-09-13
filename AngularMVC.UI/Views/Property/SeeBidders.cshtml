@@ -1,0 +1,76 @@
+﻿@model AngularMVC.DAL.Property_Detail
+
+@{
+    ViewBag.Title = "SeeBidders";
+    Layout = "~/Views/Shared/_LayoutUserProfile.cshtml";
+}
+
+<section id="cart_items">
+    <div class="row">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Property</a></li>
+                <li><a href="@Url.Action("Detail", "Property", new { area = "", id = Model.PropertyId})">@Model.Title</a></li>
+                <li class="active">Bidders</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+
+        <div class="review-payment">
+            <h2><b>No of Bidders </b><span class="badge">@ViewBag.Bidders.Count</span></h2>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed table-hover table-bordered table-responsive">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">User</td>
+                        <td class="description">Bidding Price</td>
+                        <td class="cart_total_price">Date</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Bidders)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <h3>@item.FName @item.MName @item.LName</h3>
+                                <i class="fa fa-phone">&nbsp;</i>@item.PhoneNo
+                                <br />
+                                <i class="fa fa-envelope">&nbsp;</i>@item.Email
+                                <br />
+                                <i class="fa fa-map-marker">&nbsp;</i>@item.Address
+
+                            </td>
+                            <td class="cart_description">
+
+                                <p>Price: NPR. @item.Price</p>
+                            </td>
+                            <td class="cart_description">
+
+                                <p><i class="fa fa-calendar">&nbsp;</i> @Convert.ToDateTime(item.PostedOn).ToShortDateString()</p>
+                            </td>
+                            <td class="cart_delete">
+                                @{
+                                    if (item.IsSold == true)
+                                    {
+                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-money">&nbsp;</i> Sold</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-users">&nbsp;</i> Sell Now</a>
+                                    }
+                                }
+
+
+                            </td>
+                        </tr>
+                                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>

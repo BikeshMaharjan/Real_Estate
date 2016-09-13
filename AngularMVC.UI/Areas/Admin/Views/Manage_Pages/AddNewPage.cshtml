@@ -1,0 +1,323 @@
+﻿@model GeneralCMS.DAL.Page
+
+@{
+    ViewBag.Title = "Add new Page";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Page</h2>
+
+
+@section HeadContent{
+    <script src="~/Areas/Admin/Themes/ckeditor_full/ckeditor.js"></script>
+}
+
+<div class="row">
+    @using (Html.BeginForm("AddNewPage", "Manage_Pages", FormMethod.Post, new { enctype = "multipart/form-data", area = "Admin" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.PageName, new { htmlAttributes = new { @class = "form-control", placeholder = "Page Name here...", maxlength = 100 } })
+                        @Html.ValidationMessageFor(model => model.PageName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", placeholder = "SEO Friendly URL", maxlength = 100 } })
+                        @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h4><b>Short Description </b></h4>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Short, new { htmlAttributes = new { @class = "form-control", placeholder = "Short description about page in about 500 characters", maxlength = 500 } })
+                        @Html.ValidationMessageFor(model => model.Short, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h4><b>Full Description </b></h4>
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.FullDescription, new { @id = "FullDescription", @class = "form-control", @rows = "200" })
+                        @Html.ValidationMessageFor(model => model.FullDescription, "", new { @class = "text-danger" })
+                        <script>CKEDITOR.replace("FullDescription");</script>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h4><b>Highlights </b></h4>
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Highlights, new { htmlAttributes = new { @class = "form-control", placeholder = "Highlights in about page in about 500 characters", maxlength = 500 } })
+                        @Html.ValidationMessageFor(model => model.Highlights, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div> <!--End of Col-8-->
+
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <!-- DIRECT CHAT -->
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Page Setting</h3>
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="Important" class="badge bg-red"><i class="fa fa-exclamation">&nbsp;</i>Important</span>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Help" data-widget="chat-pane-toggle">
+                                <i class="fa fa-gears"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <!-- Page Settings -->
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Parent</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownList("ParentPageID", (SelectList)ViewBag.ParentPage, new { @id = "ParentPageID", @class = "form-control" })
+                                @*@Html.EditorFor(model => model.ParentPageID, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ParentPageID, "", new { @class = "text-danger" })*@
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Language</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.CultureCode, new List<SelectListItem>{
+                        new SelectListItem() {Text = "English", Value= "en-US"}},
+
+                        new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CultureCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!--Start of ISActive-->
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Publish Page</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.IsActive, new List<SelectListItem>{
+                                new SelectListItem() {Text = "Don't Publish Now", Value= "False"},
+                                new SelectListItem() {Text = "Publish Now", Value= "True"} },
+                        new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <!--End of IsActive-->
+                        <!--Page Layout-->
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Layout</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.Remarks, new List<SelectListItem>{
+                                new SelectListItem() {Text = "Full Page", Value= "_Layout_FullPage"},
+                                new SelectListItem() {Text = "Left Sidebar", Value= "_Layout_LeftSidebar"},
+                                new SelectListItem() { Text = "Right Sidebar", Value = "_Layout_RightSidebar" } },
+                        new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <!--End of Page Layout-->
+
+
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Comments</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.AllowComment, new List<SelectListItem>{
+                                new SelectListItem() {Text = "Don't allow Comment", Value= "False"},
+                                new SelectListItem() {Text = "Allow Comments", Value= "True"} },
+                        new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AllowComment, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!--Allow Sharing-->
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Social Sharing</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.AllowSharing, new List<SelectListItem>{
+                                new SelectListItem() {Text = "Don't Allow Social Sharing", Value= "False"},
+                                new SelectListItem() {Text = "Allow Social Sharing", Value= "True"} },
+                        new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AllowSharing, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <!--End of Allow Sharing-->
+                        <!--/.Page Setting-->
+                        <!-- Help Section -->
+                        <div class="direct-chat-contacts" style="height: inherit;">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Parent Page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-bell"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">Select parent page to which you want to make this page child page.</span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Publish page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-globe"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                    <li><b>Don't Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Comments
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-comments-o"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Comments</b> : if you want people to comment on this page to make the page.</li>
+                                                    <li><b>Don't Allow Comments </b> : if you want people not to comment on this page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Social Sharing
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-sharing"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Social Sharing</b> : if you want people to share the content of the is page.</li>
+                                                    <li><b>Don't Allow Social Sharing </b> : if you don't people to share the content of the is page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                            </ul>
+                            <!-- /.Help Section -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!--/.direct-chat -->
+                <!--SEO Section-->
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">SEO Settings</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.PageHeadTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Page Title here...", maxlength = 100 } })
+                                    @Html.ValidationMessageFor(model => model.PageHeadTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p><b>Short description for SEO</b></p>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.PageDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "Page Title here...", maxlength = 1000 } })
+                                    @Html.ValidationMessageFor(model => model.PageDescription, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p><b>Keywords [Seperated by ,]</b></p>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control", placeholder = "Keywords here...", maxlength = 500 } })
+                                    @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!--End of SEO Section-->
+
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.SpecialCode, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @*<div class="col-md-10">*@
+                    @*@Html.EditorFor(model => model.SpecialCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Early Symptoms, Pregnancy Excercise" } })*@
+                    @*@Html.DropDownList("SpecialCode", (SelectList)ViewBag.SpecialCode, new { @id = "SpecialCode", @class = "form-control" })*@
+                    @*@Html.DropDownListFor(modal => modal.SpecialCode, new List<SelectListItem>{
+                        new SelectListItem() {Text = "Preconception", Value="Preconception"},
+                        new SelectListItem() {Text = "Pregnancy", Value="Pregnancy"},
+                        new SelectListItem() {Text = "First-Year", Value="First-Year"},
+                        new SelectListItem() {Text = "Toddler", Value="Toddler"},
+                         new SelectListItem() {Text = "Nutrition", Value="Nutrition"},
+                        new SelectListItem() {Text = "Toddler", Value="Toddler"}
+                        }, new { @class = "form-control" })*@
+                    @*@Html.ValidationMessageFor(model => model.SpecialCode, "", new { @class = "text-danger" })*@
+                    @*</div>*@
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FeaturedImage, "Featured Image", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <img id="previewimage" src="~/Upload/temp/SampleImage.jpg" width="100%" class="img img-thumbnail" /><br />
+                        <br />
+                        <input type="file" class="jfilestyle" data-input="false" name="Thumbnail" id="Thumbnail" onchange="$('#previewimage')[0].src = window.URL.createObjectURL(this.files[0])" accept=".jpg, .png" />
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-success btn-lg" />
+                </div>
+            </center>
+
+        </div>
+    }
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

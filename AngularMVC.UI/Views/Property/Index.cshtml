@@ -1,0 +1,92 @@
+﻿@model IEnumerable<AngularMVC.DAL.Property_Detail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_all_property.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.Partial("_PartialSidebar")
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Featured Property</h2>
+
+                    @section scripts{
+                        <script src="~/app/Property.js"></script>
+                    }
+
+
+
+                    <div ng-app="RealEstateApp">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" placeholder="Search Property by Name or Price or Location or Color or Area" ng-model="searchProperty" class="form-control" />
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div ng-controller="PropertyController">
+                            <div ng-repeat="r in AllProperty | filter : searchProperty">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Upload/Property/thumb/{{r.img1}}" alt="" />
+                                                <h2>Rs. {{r.Price}}</h2>
+                                                <p>{{r.Title}}</p>
+                                                <p>{{r.District}}</p>
+                                                <a href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>BID NOW</a>
+                                            </div>
+                                            <div class="product-overlay">
+                                                <div class="overlay-content">
+                                                    <h2>Rs. {{r.Price}}</h2>
+                                                    <p>{{r.Title}}</p>
+
+                                                    <a href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}"
+                                                       class="btn btn-default add-to-cart">
+                                                        <i class="fa fa-shopping-cart">
+                                                        </i>BID NOW
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="choose">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li>
+                                                    <a ng-href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}">
+                                                        <i class="fa fa-plus-square"></i>Read More
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}">
+                                                        <i class="fa fa-plus-square"></i>BID NOW
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div><!--features_items-->
+
+
+
+            </div>
+        </div>
+    </div>
+</section>

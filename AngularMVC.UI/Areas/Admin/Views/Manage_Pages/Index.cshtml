@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GeneralCMS.DAL.Page>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- TABLE: LATEST ORDERS -->
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Pages</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        @foreach (var MainPage in Model.Where(x => x.ParentPageID == "1"))
+        {
+            <ul>
+                <li>
+                    <img src="@Url.Content("~/Upload/Page/thumb/" + MainPage.FeaturedImage )" alt="" title="@MainPage.PageName" style="height: 60px;"> : <b> @MainPage.PageName</b>
+                    <!--Region Unit-->
+                    @foreach (var Subpage in Model.Where(x => x.ParentPageID == MainPage.Id.ToString()))
+                    {
+                        <ul>                            .
+                            <li>
+                                <img src="@Url.Content("~/Upload/Page/thumb/" + Subpage.FeaturedImage )" alt=""title="@Subpage.PageName" style="height: 60px;" > : @Subpage.PageName
+                                <!--District Minor-->
+                                @foreach (var Subpage1 in Model.Where(x => x.ParentPageID == Subpage.Id.ToString()))
+                                {
+                                    <ul>
+                                        <li>
+                                            <img src="@Url.Content("~/Upload/Page/thumb/" + Subpage1.FeaturedImage )" alt="" title="@Subpage1.PageName" style="height: 60px;"><b> @Subpage1.PageName</b>
+                                        </li>
+                                    </ul>
+                                }
+                                <!-- ./Minor Categories-->
+                            </li>
+                        </ul>
+                    }
+                    <!-- ./Pages-->
+                </li>
+            </ul>
+        }
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+        <a href="@Url.Action("AddNewPage","Manage_Pages", new { area="Admin"})" class="btn btn-sm btn-info btn-flat pull-left">Add New Page</a>
+        <a href="@Url.Action("Index","Manage_Pages", new { area="Admin"})" class="btn btn-sm btn-default btn-flat pull-right">View All Pages</a>
+    </div>
+    <!-- /.box-footer -->
+</div>
+<!-- /.box -->
+

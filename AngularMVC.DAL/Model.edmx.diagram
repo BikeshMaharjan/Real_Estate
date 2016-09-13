@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df3221ce0cd04d72b5c9d7bb17a4f1c9" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="PradeepKandelModel.Blog" Width="1.5" PointX="16.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PradeepKandelModel.Blog_Category" Width="1.5" PointX="14.625" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PradeepKandelModel.BlogComment" Width="1.5" PointX="13" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PradeepKandelModel.Testimonial" Width="1.5" PointX="15.125" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PradeepKandelModel.C__MigrationHistory" Width="1.5" PointX="14.875" PointY="15.75" />
+        <EntityTypeShape EntityType="PradeepKandelModel.AspNetRole" Width="1.5" PointX="2.875" PointY="4.5" />
+        <EntityTypeShape EntityType="PradeepKandelModel.AspNetUserClaim" Width="2" PointX="7.375" PointY="3.125" />
+        <EntityTypeShape EntityType="PradeepKandelModel.AspNetUserLogin" Width="2.25" PointX="7.375" PointY="5.875" />
+        <EntityTypeShape EntityType="PradeepKandelModel.AspNetUser" Width="1.5" PointX="5.125" PointY="2.875" />
+        <EntityTypeShape EntityType="PradeepKandelModel.Product_Category" Width="1.5" PointX="16.75" PointY="15.75" />
+        <AssociationConnector Association="PradeepKandelModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PradeepKandelModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PradeepKandelModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="PradeepKandelModel.Product_Item" Width="1.5" PointX="17" PointY="22" />
+        <EntityTypeShape EntityType="PradeepKandelModel.Property_Detail" Width="1.5" PointX="12.875" PointY="2.875" />
+        <EntityTypeShape EntityType="PradeepKandelModel.Bid_Property_User" Width="1.5" PointX="10.625" PointY="3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

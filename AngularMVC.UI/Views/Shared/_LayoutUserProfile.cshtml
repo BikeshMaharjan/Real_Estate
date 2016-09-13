@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Real Estate Business</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="~/Themes/site/images/home/logo.png" type="image/png">
+
+    @RenderSection("HeadContent", required: false)
+</head>
+<body>
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> ++977 9849845761</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> info@Onlinerealestate.com</a></li>
+                                <li>
+                                    @Html.Partial("_LoginPartial")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="www.google.com"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <!-- Start of Menu Bar -->
+                    <div class="col-sm-12">
+                        <div class="logo pull-left">
+                            <a href="@Url.Action("Index","Home", new { area = ""})"><img src="~/Themes/site/images/houses/logo.png" style="height: 150px;" alt="Online Real Estate" title="Online Real Estate" /></a>
+                        </div>
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Online Real Estate</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-right">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="@Url.Action("Index","Home",new { area = ""})">Home</a></li>
+                                <li><a href="@Url.Action("Index","Property",new { area = ""})">Browse All Property</a></li>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="@Url.Action("AddNewProperty","Property",new { area = ""})">Add New Property</a></li>
+                                    <li><a href="@Url.Action("MyProperty","UserProfile",new { area = ""})">My Profile</a></li>
+                                }
+
+                                <li><a href="@Url.Action("Contact","Home",new { area = ""})">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </div> <!-- End of Col9 -->
+                    <!-- End of Menu Bar -->
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+    </header><!--/header-->
+
+
+    <section id="cart_items" style="background: #d7f5f4;">
+        <div class="container">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <img class="img-bordered img-thumbnail img-circle" src="~/Themes/site/images/houses/profilepic.png" />
+                </div>
+                <div class="list-group">
+                    <a href="@Url.Action("MyProperty","UserProfile", new { area = ""})" class="list-group-item">
+                        <h4 class="list-group-item-heading">
+
+                            My Properties<span class="badge pull-right">@ViewBag.NoOfProperty</span>
+                        </h4>
+                        <p class="list-group-item-text">
+                            ...
+                        </p>
+                    </a>
+                    
+                    <a href="@Url.Action("AddNewProperty","Property", new { area = ""})" class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            Submit New Property<span class="badge pull-right"><i class="fa fa-plus">&nbsp;</i>NEW</span>
+                        </h4>
+                        <p class="list-group-item-text">
+                            ...
+                        </p>
+                    </a>
+                    @*<div class="list-group-item">
+                    <span class="badge">14</span>Help
+                </div> <a class="list-group-item active"><span class="badge">14</span>Help</a>*@
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                @RenderBody()
+            </div>
+
+        </div>
+    </section>
+    
+
+    <footer id="footer">
+        <!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="companyinfo">
+                            <h2><span->Online</span->Real Estate</h2>
+                            <p>Lets promote Nepali Business </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/Themes/site/images/houses/house1.jpg" alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>House on Sale</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/Themes/site/images/houses/house10.jpg" alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>House on Sale</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/Themes/site/images/houses/house2.png" alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>House on Sale</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <img src="~/Themes/site/images/houses/house4.jpg" alt="" />
+                                    </div>
+                                    <div class="overlay-icon">
+                                        <i class="fa fa-play-circle-o"></i>
+                                    </div>
+                                </a>
+                                <p>House on Sale</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="address">
+                            <img src="~/Themes/site/images/home/map.png" alt="" />
+                            <p>Dillibazar Kathmandu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright © @DateTime.UtcNow.Year Online Real Estate. All rights reserved.</p>
+                    <p class="pull-right">Developed by <span><a target="_blank" href="">Online Real Estate Group</a></span></p>
+                </div>
+            </div>
+        </div>
+
+    </footer><!--/Footer-->
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+﻿@model IEnumerable<AngularMVC.DAL.Property_Detail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmittedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpiredDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img6)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LalPurja_ScanCopy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVerified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllowAuction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApplyLocked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_Floor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_Room)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_BedRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_Kitchen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_BathRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_Hall)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_GuestRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_Car_For_Parking)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NO_Of_Bike_For_Parking)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Compound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Under_Ground_Water_Tank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FloorType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmittedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpiredDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img6)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LalPurja_ScanCopy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsVerified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllowAuction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApplyLocked)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_Floor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_Room)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_BedRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_Kitchen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_BathRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_Hall)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_GuestRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_Car_For_Parking)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NO_Of_Bike_For_Parking)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Compound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Under_Ground_Water_Tank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FloorType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.District)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseNo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PropertyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PropertyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PropertyId })
+        </td>
+    </tr>
+}
+
+</table>

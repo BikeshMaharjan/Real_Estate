@@ -1,0 +1,410 @@
+﻿@model GeneralCMS.DAL.MenuItem
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+@using (Html.BeginForm("EditMenuItem", "Manage_Menu", FormMethod.Post, new { enctype = "multipart/form-data", area = "Admin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <!-- DIRECT CHAT -->
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Menu Item General Setting</h3>
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="Important" class="badge bg-red"><i class="fa fa-exclamation">&nbsp;</i>Important</span>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Help" data-widget="chat-pane-toggle">
+                                <i class="fa fa-gears"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <!-- Page Settings -->
+                        @Html.HiddenFor(model => model.MenuItemID)
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ImageIcon, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ImageIcon, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ImageIcon, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HtmlContent, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.HtmlContent, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HtmlContent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MenuOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.MenuOrder, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MenuOrder, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubText, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SubText, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SubText, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <!--/.Page Setting-->
+                        <!-- Help Section -->
+                        <div class="direct-chat-contacts" style="height: inherit;">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Parent Page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-bell"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">Select parent page to which you want to make this page child page.</span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Publish page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-globe"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                    <li><b>Don't Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Comments
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-comments-o"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Comments</b> : if you want people to comment on this page to make the page.</li>
+                                                    <li><b>Don't Allow Comments </b> : if you want people not to comment on this page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Social Sharing
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-sharing"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Social Sharing</b> : if you want people to share the content of the is page.</li>
+                                                    <li><b>Don't Allow Social Sharing </b> : if you don't people to share the content of the is page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                            </ul>
+                            <!-- /.Help Section -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!--/.direct-chat -->
+
+
+
+
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <!-- DIRECT CHAT -->
+                <div class="box box-primary direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Advanced Menu Item Settings</h3>
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="Important" class="badge bg-blue"><i class="fa fa-exclamation">&nbsp;</i>Important</span>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Help" data-widget="chat-pane-toggle">
+                                <i class="fa fa-gears"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <!-- Page Settings -->
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Menu Position</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownList("MenuID", (SelectList)ViewBag.MenuID, new { @id = "MenuID", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MenuID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Link Type</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.LinkType, new List<SelectListItem>{
+                                new SelectListItem() {Text = "External Link", Value= "1"},
+                                new SelectListItem() {Text = "Internal Link", Value= "0"} },
+                        new { @class = "form-control", id = "LinkType", @onfocus = "checkLinkType()"  })
+                                @Html.ValidationMessageFor(model => model.LinkType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="ExternalLink">
+                            <div class="control-label col-md-5"><b>External Link</b></div>
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.LinkURL, new { htmlAttributes = new { @class = "form-control", placeholder="http://aryalnishan.com.np/blog" } })
+                                @Html.ValidationMessageFor(model => model.LinkURL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" id="PageName" name="PageName">
+                            <div class="control-label col-md-5"><b>Page</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownList("PageID", (SelectList)ViewBag.PageID, new { @id = "PageID", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PageID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Menu Level</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.MenuLevel, new List<SelectListItem>{
+                                new SelectListItem() {Text = "Main Menu", Value= "0"},
+                                new SelectListItem() {Text = "Sub Menu", Value= "1"} },
+                        new { @class = "form-control", id = "MenuLevel", @onfocus = "checkMenuLevel()" })
+                                @Html.ValidationMessageFor(model => model.MenuLevel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="ParentMenu" name="ParentMenu" hidden>
+                            <div class="control-label col-md-5"><b>Parent Menu</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownList("ParentID", (SelectList)ViewBag.MenuType, new { @id = "ParentID", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <!--Start of ISActive-->
+                        <div class="form-group">
+                            <div class="control-label col-md-5"><b>Publish Menu</b></div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.IsActive, new List<SelectListItem>{
+                                new SelectListItem() {Text = "Don't Publish Now", Value= "False"},
+                                new SelectListItem() {Text = "Publish Now", Value= "True"} },
+ new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <center>
+                                <input type="submit" value="Update Menu Item" class="btn btn-lg btn-success" />
+                            </center>
+                        </div>
+
+                        <!--End of IsActive-->
+                        <!--/.Page Setting-->
+                        <!-- Help Section -->
+                        <div class="direct-chat-contacts" style="height: inherit;">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Parent Page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-bell"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">Select parent page to which you want to make this page child page.</span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Publish page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-globe"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                    <li><b>Don't Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Comments
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-comments-o"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Comments</b> : if you want people to comment on this page to make the page.</li>
+                                                    <li><b>Don't Allow Comments </b> : if you want people not to comment on this page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Social Sharing
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-sharing"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Social Sharing</b> : if you want people to share the content of the is page.</li>
+                                                    <li><b>Don't Allow Social Sharing </b> : if you don't people to share the content of the is page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                            </ul>
+                            <!-- /.Help Section -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!--/.direct-chat -->
+
+            </div>
+
+
+        </div> <!--End of Row-->
+    </div>
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+
+
+
+
+    function checkLinkType() {
+        var x = document.getElementById("LinkType");
+        if (x.options[x.selectedIndex].value == "1") {
+            $("#ExternalLink").show();
+            $("#PageName").hide();
+        }
+
+        if (x.options[x.selectedIndex].value == "0") {
+            $("#PageName").show();
+            $("#ExternalLink").hide();
+        }
+    };
+
+    function checkMenuLevel() {
+        var x = document.getElementById("MenuLevel");
+        //1 = if Sub menu
+        if (x.options[x.selectedIndex].value == "1") {
+            $("#ParentMenu").show();
+        }
+
+        if (x.options[x.selectedIndex].value == "0") {
+            //0 if main Menu
+            $("#ParentMenu").hide();
+        }
+    };
+
+
+</script>

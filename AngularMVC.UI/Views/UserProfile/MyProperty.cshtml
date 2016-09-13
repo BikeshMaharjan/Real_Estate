@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AngularMVC.DAL.Property_Detail>
+
+@{
+    ViewBag.Title = "MyProperty";
+    Layout = "~/Views/Shared/_LayoutUserProfile.cshtml";
+}
+
+<section id="cart_items">
+    <div class="row">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">User Profile</a></li>
+                <li class="active">My Properties</li>
+            </ol>
+        </div><!--/breadcrums-->
+
+
+        <div class="review-payment">
+            <h2><b>My Properties</b><span class="badge">@Model.Count()</span></h2>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed table-hover table-bordered table-responsive">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Image</td>
+                        <td class="description">Property Detail</td>
+                        <td class="price">Location</td>
+
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img src="@Url.Content("~/Upload/Property/thumb/" + @item.img1)" height="60" alt="@item.Title" title="@item.Title"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">@item.Title</a></h4>
+                                <p>Price: NPR. @item.Price</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>@item.Zone @item.District @item.City</p>
+                            </td>
+                            <td class="cart_delete">
+                                <a  href="@Url.Action("SeeBidders","Property", new { area = "", PropertyId = item.PropertyId})" class="btn btn-sm btn-primary"><i class="fa fa-users">&nbsp;</i> See Bidders</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+
+
+

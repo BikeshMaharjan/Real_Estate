@@ -1,0 +1,588 @@
+﻿@model AngularMVC.DAL.Property_Detail
+
+@{
+    ViewBag.Title = "Add New Property";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent{
+    <script src="~/Areas/SuperAdmin/Themes/ckeditor_full/ckeditor.js"></script>
+}
+
+<div class="row">
+    @using (Html.BeginForm("Create", "Manage_Property", FormMethod.Post, new { enctype = "multipart/form-data", area = "Admin" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4><b>Full Description </b></h4>
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Description, new { @id = "FullDescription", @class = "form-control", @rows = "200" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        <script>CKEDITOR.replace("FullDescription");</script>
+                    </div>
+                </div>
+                
+
+                <!-- DIRECT CHAT -->
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Property Setting</h3>
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="Important" class="badge bg-red"><i class="fa fa-exclamation">&nbsp;</i>Important</span>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Help" data-widget="chat-pane-toggle">
+                                <i class="fa fa-gears"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(modal => modal.Category, new List<SelectListItem>{
+                        new SelectListItem() {Text = "House for Rent", Value="House for Rent"},
+                        new SelectListItem() {Text = "Land for Lease", Value="Land for Lease"},
+                        new SelectListItem() {Text = "Land for Sale", Value="Land for Sale"},
+                        new SelectListItem() {Text = "House on Sale", Value="HOuse On Sale"},
+                        new SelectListItem() {Text = "Rent for Office", Value="Rent for Offie" } },
+                               new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AllowAuction, "Allow Bidding", htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(modal => modal.AllowAuction, new List<SelectListItem>{
+                        new SelectListItem() {Text = "Allow", Value="True"},
+                        new SelectListItem() {Text = "Don't Allow", Value="False" } },
+                               new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AllowAuction, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PublishedDate, "Active From", htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.PublishedDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.UtcNow } })
+                                @Html.ValidationMessageFor(model => model.PublishedDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ExpiredDate, "Expires On", htmlAttributes: new { @class = "control-label col-md-5" })
+                            <div class="col-md-7">
+                                @Html.EditorFor(model => model.ExpiredDate, new { htmlAttributes = new { @class = "form-control", type = "date", min = DateTime.UtcNow } })
+                                @Html.ValidationMessageFor(model => model.ExpiredDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!-- Help Section -->
+                        <div class="direct-chat-contacts" style="height: inherit;">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Parent Page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-bell"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">Select parent page to which you want to make this page child page.</span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Publish page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-globe"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                    <li><b>Don't Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Comments
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-comments-o"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Comments</b> : if you want people to comment on this page to make the page.</li>
+                                                    <li><b>Don't Allow Comments </b> : if you want people not to comment on this page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Social Sharing
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-sharing"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Social Sharing</b> : if you want people to share the content of the is page.</li>
+                                                    <li><b>Don't Allow Social Sharing </b> : if you don't people to share the content of the is page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                            </ul>
+                            <!-- /.Help Section -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!--/.direct-chat -->
+
+                <!--Special Section-->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Address Settings</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Zone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Zone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Zone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                    Image
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-6">
+                                    <input type="file" name="Thumbnail" id="Thumbnail" />
+                                </div>
+                                @*@Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
+                                </div>*@
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HouseNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HouseNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HouseNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!--End of Special Section-->
+
+
+
+
+                <!-- DIRECT CHAT -->
+                @*<div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Item Property</h3>
+                        <div class="box-tools pull-right">
+                            <span data-toggle="tooltip" title="Important" class="badge bg-red"><i class="fa fa-exclamation">&nbsp;</i>Important</span>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Help" data-widget="chat-pane-toggle">
+                                <i class="fa fa-gears"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        
+
+                        <!-- Help Section -->
+                        <div class="direct-chat-contacts" style="height: inherit;">
+                            <ul class="contacts-list">
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Parent Page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-bell"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">Select parent page to which you want to make this page child page.</span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Publish page
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-globe"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                    <li><b>Don't Publish Page</b> : if you wan to make the page visible to Public</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Comments
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-comments-o"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Comments</b> : if you want people to comment on this page to make the page.</li>
+                                                    <li><b>Don't Allow Comments </b> : if you want people not to comment on this page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                                <li>
+                                    <a href="#">
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                Social Sharing
+                                                <small class="contacts-list-date pull-right"><i class="fa fa-sharing"></i></small>
+                                            </span>
+                                            <span class="contacts-list-msg">
+                                                <ol>
+                                                    <li><b>Allow Social Sharing</b> : if you want people to share the content of the is page.</li>
+                                                    <li><b>Don't Allow Social Sharing </b> : if you don't people to share the content of the is page.</li>
+                                                </ol>
+                                            </span>
+                                        </div>
+                                        <!-- /.contacts-list-info -->
+                                    </a>
+                                </li>
+                                <!-- End Contact Item -->
+                            </ul>
+                            <!-- /.Help Section -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>*@
+                <!--/.Item setting -->
+
+
+
+            </div> <!--End of Col-8-->
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                
+                <!--Featured Section-->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Featured Image</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="">
+                            <div class="form-group">
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    <img id="previewimage" src="~/Upload/Property/Property.jpg" width="100%" class="img img-thumbnail" /><br />
+                                    <br />
+                                    <input type="file" class="jfilestyle" data-input="false" name="Thumbnail" id="Thumbnail" onchange="$('#previewimage')[0].src = window.URL.createObjectURL(this.files[0])" accept=".jpg, .png" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!--End of Featured Section-->
+                <!--Special Section-->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Amenities</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Breath, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Breath, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Breath, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_Floor, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_Floor, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_Floor, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_Room, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_Room, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_Room, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_BedRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_BedRoom, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_BedRoom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_Kitchen, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_Kitchen, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_Kitchen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_BathRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_BathRoom, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_BathRoom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HouseColor, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HouseColor, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HouseColor, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_Hall, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_Hall, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_Hall, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_GuestRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_GuestRoom, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_GuestRoom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_Car_For_Parking, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_Car_For_Parking, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_Car_For_Parking, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NO_Of_Bike_For_Parking, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.NO_Of_Bike_For_Parking, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NO_Of_Bike_For_Parking, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Compound, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.Compound)
+                                        @Html.ValidationMessageFor(model => model.Compound, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Under_Ground_Water_Tank, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.Under_Ground_Water_Tank)
+                                        @Html.ValidationMessageFor(model => model.Under_Ground_Water_Tank, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FloorType, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.FloorType, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FloorType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HouseType, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HouseType, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HouseType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!--End of Special Section-->
+                
+            </div>
+
+            <center>
+                <div class="form-group">
+                    <input type="submit" value="Save Changes" class="btn btn-success btn-lg" />
+                </div>
+            </center>
+
+        </div>
+    }
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@section scripts{
+        <script src="~/app/Blog.js"></script>
+    }*@
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>Ghar</span>-Bikrima</h1>
+                                <h2>5 Kalanki, Kathmandu</h2>
+                                <p>4 Rooms, 1 Kitchen, 1 Hall with Atached Bathroom </p>
+                              
+                                <a href="@Url.Action("Detail", "Property", new { area = "", id = "e288bf58-4fd9-4995-8af8-f1c11a5290a2"})" class="btn btn-default get"><i class="fa fa-shopping-cart"></i> Get it now</a>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Themes/site/images/houses/cahouse1.png" class="girl img-responsive" alt="" />
+                            
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>Sasto</span>Ghar</h1>
+                                <h2>Chitwan Kathmandu</h2>
+                                <p>2 wota kotha, 1 wota kitchen vayeko ghar 'sastoma' </p>
+                                <a href="@Url.Action("Detail", "Property", new { area="", id="85126d45-72ac-4178-bd91-1221eb3271ed"})" class="btn btn-default get"><i class="fa fa-shopping-cart"></i> Get it now</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Themes/site/images/houses/cahouse2.png" class="girl img-responsive" alt="" />
+                                
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>Apartment</span>- For Sale</h1>
+                                <h2>Dhobighat, Lalitpur</h2>
+                                <p>With 1 bedroom with bathroom attached, 1 kitchen, 1 living room </p>
+                                <a href="@Url.Action("Detail","Property",new { area="",id="3bdac44d-db19-40af-a5ec-35cf24ded58b"})" class="btn btn-default get"><i class="fa fa-shopping-cart"></i> Get it now</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/Themes/site/images/houses/cahouse3.png" class="girl img-responsive" alt="" />
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.Partial("_PartialSidebar")
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Featured Property</h2>
+
+                    @section scripts{
+                        <script src="~/app/Property.js"></script>
+                    }
+
+
+
+                    <div ng-app="RealEstateApp">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="text" placeholder="Search Property by Name or Price or Location or Color or Area" ng-model="searchProperty" class="form-control" />
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div ng-controller="PropertyController">
+                            <div ng-repeat="r in AllProperty | filter : searchProperty">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="~/Upload/Property/thumb/{{r.img1}}" alt="" />
+                                                <h2>Rs. {{r.Price}}</h2>
+                                                <p>{{r.Title}}</p>
+                                                <p>{{r.District}}</p>
+                                                
+                                             
+                                                <a href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>BID NOW</a>
+                                            </div>
+                                            <div class="product-overlay">
+                                                <div class="overlay-content">
+                                                    <h2>Rs. {{r.Price}}</h2>
+                                                    <p>{{r.Title}}</p>
+
+                                                    <a href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}"
+                                                       class="btn btn-default add-to-cart">
+                                                        <i class="fa fa-shopping-cart">
+                                                        </i>BID NOW
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="choose">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li>
+                                                    <a ng-href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}">
+                                                        <i class="fa fa-plus-square"></i>Read More
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="@Url.Content("~/Property/Detail/")?id={{r.PropertyId}}">
+                                                        <i class="fa fa-plus-square"></i>BID NOW
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div><!--features_items-->
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h1><b>Sold Properties</b></h1>
+           
+            @foreach (var item in ViewBag.ListSoldProperty)
+            {
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="~/Upload/Property/thumb/@item.img1" alt="" />
+                                <h2>Rs. @item.Price</h2>
+                                <p>@item.Title</p>
+                                <p>@item.District</p>
+                                <a href="@Url.Action("Detail", "Property", new { area = "", id = item.PropertyId})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>SOLD</a>
+                            </div>
+                            <div class="product-overlay">
+                                <div class="overlay-content">
+                                    <h2>Rs. @item.Price</h2>
+                                    <p>@item.Title</p>
+
+                                    <a href="@Url.Action("Detail", "Property", new { area = "", id = item.PropertyId})"
+                                       class="btn btn-default add-to-cart">
+                                        <i class="fa fa-shopping-cart">
+                                        </i>SOLD
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+

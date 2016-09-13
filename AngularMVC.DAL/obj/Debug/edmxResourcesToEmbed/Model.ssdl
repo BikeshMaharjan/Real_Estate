@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PradeepKandelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="128" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="128" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="128" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="Thumbnail" Type="nvarchar" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bid_Property_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PropertyId" Type="nvarchar" MaxLength="128" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+    <Property Name="FName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Price" Type="money" />
+    <Property Name="PostedOn" Type="datetime" />
+    <Property Name="PostedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="IsVerified" Type="bit" />
+    <Property Name="IsAccepted" Type="bit" />
+    <Property Name="IsSold" Type="bit" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="BlogID" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Slug" Type="nvarchar" MaxLength="256" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Subtitle" Type="nvarchar" MaxLength="300" />
+    <Property Name="Category" Type="varchar" MaxLength="100" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="500" />
+    <Property Name="Keywords" Type="nvarchar" MaxLength="1000" />
+    <Property Name="MetaDescription" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Thumbnail" Type="varchar" MaxLength="128" />
+    <Property Name="AlbumID" Type="nvarchar" MaxLength="128" />
+    <Property Name="Highlight" Type="nvarchar(max)" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+    <Property Name="PublishDate" Type="datetime" />
+    <Property Name="PostedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="PostedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsVerified" Type="bit" />
+  </EntityType>
+  <EntityType Name="Blog_Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="200" />
+    <Property Name="TotalPosts" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="BlogComment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlogID" Type="nvarchar" MaxLength="128" />
+    <Property Name="UserName" Type="varchar" MaxLength="256" />
+    <Property Name="DisplayName" Type="varchar" MaxLength="256" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="CommentedOn" Type="datetime" />
+    <Property Name="CommentedIP" Type="varchar" MaxLength="300" />
+    <Property Name="IsVerified" Type="bit" />
+  </EntityType>
+  <EntityType Name="Product_Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="CategoryLevel" Type="int" />
+    <Property Name="IsShowInSearch" Type="bit" />
+    <Property Name="IsShowInCatalog" Type="bit" />
+    <Property Name="IsShowInMenu" Type="bit" />
+    <Property Name="ActiveFrom" Type="datetime" />
+    <Property Name="ActiveTo" Type="datetime" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="Thumbnail" Type="nvarchar" MaxLength="256" />
+    <Property Name="IsService" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsModified" Type="bit" />
+    <Property Name="AddedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="AddedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Product_Item">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="SKU" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Thumbnail" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Highlight" Type="nvarchar" MaxLength="2000" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+    <Property Name="Weight" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="HidePrice" Type="bit" />
+    <Property Name="Price" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="ListPrice" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="CostPrice" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="ManufacturerPrice" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="Visibility" Type="bit" />
+    <Property Name="ActiveFrom" Type="datetime" />
+    <Property Name="HideToAnonymous" Type="bit" />
+    <Property Name="IsFeatured" Type="bit" />
+    <Property Name="IsSpecial" Type="bit" />
+    <Property Name="SpecialPrice" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="ViewCount" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Length" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="Height" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="Width" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsModified" Type="bit" />
+    <Property Name="AddedOn" Type="datetime" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="AddedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="RatedValue" Type="decimal" Precision="16" Scale="4" />
+    <Property Name="IsNotifiacationViewed" Type="bit" />
+    <Property Name="TotalDiscount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Property_Detail">
+    <Key>
+      <PropertyRef Name="PropertyId" />
+    </Key>
+    <Property Name="PropertyId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="TypeId" Type="varchar" MaxLength="50" />
+    <Property Name="LocationId" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="varchar" MaxLength="50" />
+    <Property Name="Price" Type="money" />
+    <Property Name="SubmittedDate" Type="datetime" />
+    <Property Name="PublishedDate" Type="datetime" />
+    <Property Name="ExpiredDate" Type="datetime" />
+    <Property Name="img1" Type="varchar" MaxLength="50" />
+    <Property Name="img2" Type="varchar" MaxLength="50" />
+    <Property Name="img3" Type="varchar" MaxLength="50" />
+    <Property Name="img4" Type="varchar" MaxLength="50" />
+    <Property Name="img5" Type="varchar" MaxLength="50" />
+    <Property Name="img6" Type="varchar" MaxLength="50" />
+    <Property Name="LalPurja_ScanCopy" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="15" />
+    <Property Name="IsVerified" Type="bit" />
+    <Property Name="AllowAuction" Type="bit" />
+    <Property Name="IsApplyLocked" Type="bit" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+    <Property Name="Length" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Breath" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Area" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="NO_Of_Floor" Type="int" />
+    <Property Name="NO_Of_Room" Type="int" />
+    <Property Name="NO_Of_BedRoom" Type="int" />
+    <Property Name="NO_Of_Kitchen" Type="int" />
+    <Property Name="NO_Of_BathRoom" Type="int" />
+    <Property Name="HouseColor" Type="varchar" MaxLength="50" />
+    <Property Name="NO_Of_Hall" Type="int" />
+    <Property Name="NO_Of_GuestRoom" Type="int" />
+    <Property Name="NO_Of_Car_For_Parking" Type="int" />
+    <Property Name="NO_Of_Bike_For_Parking" Type="int" />
+    <Property Name="Compound" Type="bit" />
+    <Property Name="Under_Ground_Water_Tank" Type="bit" />
+    <Property Name="FloorType" Type="varchar" MaxLength="50" />
+    <Property Name="HouseType" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Zone" Type="varchar" MaxLength="50" />
+    <Property Name="District" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Street" Type="varchar" MaxLength="50" />
+    <Property Name="HouseNo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Testimonial">
+    <Key>
+      <PropertyRef Name="TestimonialID" />
+    </Key>
+    <Property Name="TestimonialID" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="PersonName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Position" Type="nvarchar" MaxLength="100" />
+    <Property Name="Organization" Type="nvarchar" MaxLength="200" />
+    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="PostedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="PostedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="IsVerified" Type="bit" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PradeepKandelModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bid_Property_User" EntityType="Self.Bid_Property_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Blog_Category" EntityType="Self.Blog_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogComment" EntityType="Self.BlogComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Category" EntityType="Self.Product_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Item" EntityType="Self.Product_Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Property_Detail" EntityType="Self.Property_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Testimonial" EntityType="Self.Testimonial" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
