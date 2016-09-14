@@ -6,6 +6,8 @@
 }
 
 <section>
+    
+    <input type="hidden" id="test" value="@Model.ExpiredDate"/>
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
@@ -64,9 +66,51 @@
                     <div class="col-sm-7">
                         <div class="product-information">
                             <!--/product-information-->
-                           <span id="bid_timer"></span>
+
+                            
+                           
+                            @{
+                                if (Model.AllowAuction == true)
+                                {
+                                    if (Model.IsApplyLocked != true)
+                                    {
+                                    <h3>
+                                        Bidding Expires On: <b>
+                                            <h2>
+                                                <span id="expire_date" class="badge">
+                                                    @Model.ExpiredDate
+                                                </span>
+                                            </h2>
+                                        </b>
+                                    </h3>
+                                    <br />
+                                    
+                                        <h1><span id="bid_timer" style="color:#f15f0a"></span></h1>
+                                    }
+                                    else
+                                    {
+                                        <h1><b>Property SOLD.</b></h1>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <h3> Bidding Has Expired!!! on </h3> <b>
+                                    <h2>
+                                        <span id="expire_date" class="badge">
+                                            @Model.ExpiredDate
+                                        </span>
+                                    </h2>
+                                    </b>
+                                }
+                            }
+
+                           
+                           
+
+
                             <h2>@Model.Title</h2>
-                            <p>Address : @Model.District @Model.Street</p>
+                            <p>Address : @Model.City, @Model.Country</p>
                             <img src="~/Themes/site/images/product-details/rating.png" alt="@Model.Title" />
                             <div>
                                 <span>
@@ -78,18 +122,29 @@
                                     BID NOW
                                 </button>*@
                                 @{
-                                    if (Model.IsApplyLocked == true)
-                                    {
-                                        <button class="btn btn-default cart" type="button">
-                                            ALREADY SOLD
-                                        </button>
+                                        if (Model.IsApplyLocked == true)
+                                        {
+                                            <button class="btn btn-default cart" type="button" style="background-color:#e81b0b">
+                                                ALREADY SOLD
+                                            </button>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-default cart" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                            BID NOW
-                                        </button>
+                                        if (Model.AllowAuction == true)
+                                        {
+                                            <button class="btn btn-default cart" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                BID NOW
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-default cart" type="button" style="background-color:#808080">
+                                                BID OFF
+                                            </button>
+                                        }
+
                                     }
+
                                 }
                                 
                                 <div class="collapse" id="collapseExample">
@@ -126,7 +181,7 @@
                                 
                             <a href=""><img src="~/Themes/site/images/product-details/share.png" class="share img-responsive" alt="" /></a>
                         </div><!--/product-information-->
-                        <script type="text/javascript" src="~/Scripts/jss/timer.js"></script>
+                       
                     </div>
                 </div><!--/product-details-->
 
@@ -167,3 +222,70 @@
     </div>
    
 </section>
+
+@section scripts{
+    <script>
+        function startTimer(duration, display) {
+            var start = Date.now(),
+                diff,
+                days,
+                hours,
+                minutes,
+                seconds;
+            function timer() {
+                // get the number of seconds that have elapsed since 
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+
+
+                //// get total seconds between the times
+                //var delta = Math.abs(date_future - date_now) / 1000;
+
+                // calculate (and subtract) whole days
+                days = Math.floor(diff / 86400);
+                diff -= days * 86400;
+
+                // calculate (and subtract) whole hours
+                hours = Math.floor(diff / 3600) % 24;
+                diff -= hours * 3600;
+
+                // calculate (and subtract) whole minutes
+                minutes = Math.floor(diff / 60) % 60;
+                diff -= minutes * 60;
+
+                // what's left is seconds
+                seconds = Math.floor(diff % 60);  // in theory the modulus is not required
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = days + " :" + hours + " :" + minutes + " :" + seconds;
+
+                if (diff <= 0) {
+                    // add one second so that the count down starts at the full duration
+                    // example 05:00 not 04:59
+                    start = Date.now() + 1000;
+                }
+            };
+            // we don't want to wait a full second before the timer starts
+            timer();
+            setInterval(timer, 1000);
+        }
+
+
+           var test = document.getElementById('test').value;
+           var exp = new Date(test);
+           var now = new Date();
+           if (exp < now) {
+               var difference = Math.abs(now - exp) / 1000;
+           } else {
+               var difference = Math.abs(exp - now) / 1000;
+               display = document.querySelector('#bid_timer');
+               startTimer(difference, display);
+           }
+           
+        
+       
+        </script>
+    }

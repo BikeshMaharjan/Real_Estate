@@ -14,7 +14,7 @@ namespace AngularMVC.UI.Controllers
     public class PropertyController : Controller
     {
         PradeepKandelEntities db = new PradeepKandelEntities();
-        String expired_date="";
+        
 
         // GET: Property
         public ActionResult Index()
@@ -22,24 +22,30 @@ namespace AngularMVC.UI.Controllers
             return View();
         }
 
-        protected string ExpiredDate {
-            get
-            {
-                return expired_date;
-            }
-        }
+      
 
         public ActionResult Detail(string id)
         {
             var Category = db.Property_Detail.Find(id).Category.Trim().ToString();
             ViewBag.Recommended = db.Property_Detail.Where(x => x.Category == Category).Take(6).ToList();
-            expired_date = db.Property_Detail.Find(id).ExpiredDate.ToString();
+            Property_Detail property_Detail = db.Property_Detail.Find(id);
+            var expired_date = db.Property_Detail.Find(id).ExpiredDate;
+            var now = DateTime.Now;
+
+            if(now > expired_date)
+            {
+                property_Detail.AllowAuction = false;
+                db.Entry(property_Detail).State = System.Data.Entity.EntityState.Modified;
+            }
+            db.SaveChanges();
             return View(db.Property_Detail.Find(id));
         }
 
+      
+
         public ActionResult SeeBidders(string PropertyId)
         {
-            var Category = db.Property_Detail.Find(PropertyId).Category.Trim().ToString();
+            var Category = db.Property_Detail.Find(PropertyId).Category.FirstOrDefault();
             ViewBag.Bidders = db.Bid_Property_User.Where(x => x.PropertyId == PropertyId).ToList();
             return View(db.Property_Detail.Find(PropertyId));
         }
@@ -51,25 +57,40 @@ namespace AngularMVC.UI.Controllers
             var PropertyId = db.Bid_Property_User.Find(Id).PropertyId;
 
             Property_Detail property_Detail = db.Property_Detail.Find(PropertyId);
+            var property_owner = property_Detail.UserId;
 
+            AspNetUser owner = db.AspNetUsers.Find(property_owner);
+            var owner_email = owner.Email;
+
+            String toemail = property.Email.ToString();
+            String fromemail = "onlinerealestate_nepal@hotmail.com";
+            String pw = "Onlinerealestate789nep@l";
+            String sub = "Online Real Estate";
+           // String body = "you have won bidding";
+            
+           String body = "<p><b>Dear " + property.FName.ToString() + ", </b></p><p>You Are the WINNER.</p><p> The bidding of the property " 
+                + property_Detail.Title + " is over.<br/> <br/> Please contact following for further details.</p><p><b>Email : </b>" 
+                + owner_email+ "</p><p><b>Username : " + owner.FirstName +" "+owner.LastName + "</b></p><p><b>To contact OnlineRealEstate: </b>" + fromemail 
+                + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
+        
             property.IsSold = true;
             db.Entry(property).State = System.Data.Entity.EntityState.Modified;
 
             property_Detail.IsApplyLocked = true;
-
             db.Entry(property_Detail).State = System.Data.Entity.EntityState.Modified;
 
             db.SaveChanges();
 
-            MailMessage objMail = new MailMessage("bks_maharjan7@hotmail.com", "Aakeshkunwar1@gmail.com", "Online Real Estate", "You won Bidding.");
-            NetworkCredential objNC = new NetworkCredential("bks_maharjan7@hotmail.com", "");
+            MailMessage objMail = new MailMessage(fromemail, "bksmaharjan9@gmail.com", sub, body);
+            objMail.IsBodyHtml = true;
+            NetworkCredential objNC = new NetworkCredential(fromemail, pw);
             SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
             objsmtp.EnableSsl = true;
             objsmtp.Credentials = objNC;
             objsmtp.Send(objMail);
 
             // return RedirectToAction("SellNow", "Property", Id = PropertyId);
-            return RedirectToAction("SeeBidders", "Property", Id = PropertyId);
+            return RedirectToAction("SeeBidders", "Property", new { PropertyId = PropertyId });
         }
 
         [Authorize]

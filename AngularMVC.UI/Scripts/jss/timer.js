@@ -30,9 +30,8 @@
 }
 
 window.onload = function () {
-    var expiredate = "<%= ExpiredDate %>";
-    document.getElementById()
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#bid_timer');
-    startTimer(fiveMinutes, display);
+
+   // startTimer(fiveMinutes, display);
 };
