@@ -56,7 +56,7 @@
                     <!-- Start of Menu Bar -->
                     <div class="col-sm-12">
                         <div class="logo pull-left">
-                            <a href="@Url.Action("Index","Home", new { area = ""})"><img src="~/Themes/site/images/houses/logo.png" style="height: 150px;" alt="Online Real State" title="Online Real State" /></a>
+                            <a href="@Url.Action("Index","Home", new { area = ""})"><img src="~/Themes/site/images/houses/logo.png" style="height: 50px; width:150px;" alt="Online Real State" title="Online Real State" /></a>
                         </div>
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -69,7 +69,7 @@
                         <div class="mainmenu pull-right">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="@Url.Action("Index","Home",new { area = ""})">Home</a></li>
-                                <li><a href="@Url.Action("Index","Property",new { area = ""})" class="active">Browse All Property</a></li>
+                                <li><a href="@Url.Action("Index","Property",new { area = ""})">Browse All Property</a></li>
 
                                 @if (User.Identity.IsAuthenticated)
                                 {

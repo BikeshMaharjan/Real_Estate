@@ -14,7 +14,11 @@ namespace AngularMVC.UI.Controllers
     public class PropertyController : Controller
     {
         PradeepKandelEntities db = new PradeepKandelEntities();
-        
+
+        String fromemail = "onlinerealestate_nepal@hotmail.com";
+        String pw = "Onlinerealestate789nep@l";
+        String sub = "Online Real Estate";
+
 
         // GET: Property
         public ActionResult Index()
@@ -46,7 +50,9 @@ namespace AngularMVC.UI.Controllers
         public ActionResult SeeBidders(string PropertyId)
         {
             var Category = db.Property_Detail.Find(PropertyId).Category.FirstOrDefault();
-            ViewBag.Bidders = db.Bid_Property_User.Where(x => x.PropertyId == PropertyId).ToList();
+           // ViewBag.Bidders = db.Bid_Property_User.Where(x => x.PropertyId == PropertyId).ToList();
+           var newList = db.Bid_Property_User.Where(x => x.PropertyId == PropertyId).ToList();
+            ViewBag.Bidders = newList.OrderByDescending(x => x.Price).ToList();
             return View(db.Property_Detail.Find(PropertyId));
         }
 
@@ -63,12 +69,10 @@ namespace AngularMVC.UI.Controllers
             var owner_email = owner.Email;
 
             String toemail = property.Email.ToString();
-            String fromemail = "onlinerealestate_nepal@hotmail.com";
-            String pw = "Onlinerealestate789nep@l";
-            String sub = "Online Real Estate";
+            
            // String body = "you have won bidding";
             
-           String body = "<p><b>Dear " + property.FName.ToString() + ", </b></p><p>You Are the WINNER.</p><p> The bidding of the property " 
+           String body = "<p><b>Dear " + property.FName.ToString() + ", </b></p><p>CONGRATULATIONS!!! You Are the WINNER.</p><p> The bidding of the property " 
                 + property_Detail.Title + " is over.<br/> <br/> Please contact following for further details.</p><p><b>Email : </b>" 
                 + owner_email+ "</p><p><b>Username : " + owner.FirstName +" "+owner.LastName + "</b></p><p><b>To contact OnlineRealEstate: </b>" + fromemail 
                 + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
@@ -81,7 +85,7 @@ namespace AngularMVC.UI.Controllers
 
             db.SaveChanges();
 
-            MailMessage objMail = new MailMessage(fromemail, "bksmaharjan9@gmail.com", sub, body);
+            MailMessage objMail = new MailMessage(fromemail, toemail, sub, body);
             objMail.IsBodyHtml = true;
             NetworkCredential objNC = new NetworkCredential(fromemail, pw);
             SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
@@ -100,6 +104,13 @@ namespace AngularMVC.UI.Controllers
             var Username = User.Identity.Name;
             //IdeasVoting ideasVoting = new IdeasVoting();
             Bid_Property_User checkBidder;
+            Property_Detail property_detail = db.Property_Detail.Find(PropertyId);
+
+            //for email notification
+            AspNetUser property_owner = db.AspNetUsers.Find(property_detail.UserId);
+            string to_email = property_owner.Email.ToString();
+           
+
             try
             {
                 //checkVoter = db.IdeasVotings.Single(x => x.UserId == UserId && x.IdeasDetailId == IdeasDetailId);
@@ -109,48 +120,72 @@ namespace AngularMVC.UI.Controllers
             {
                 checkBidder = null;
             }
-            
-            if (ModelState.IsValid)
+
+           
+            if (Price >= property_detail.Price)
             {
-                if (checkBidder == null)
+
+                 if (ModelState.IsValid)
                 {
-                    Bid_Property_User bidding = new Bid_Property_User();
-                    bidding.Id = Guid.NewGuid().ToString();
+                    if (checkBidder == null)
+                    {
+                        Bid_Property_User bidding = new Bid_Property_User();
+                        bidding.Id = Guid.NewGuid().ToString();
 
-                    bidding.PropertyId = PropertyId;
+                        bidding.PropertyId = PropertyId;
 
-                    bidding.UserId = UserId;
-
-
-                    var User = db.AspNetUsers.Find(UserId);
-
-                    bidding.FName = User.FirstName;
-                    bidding.MName = User.MiddleName;
-                    bidding.LName = User.LastName;
-                    bidding.PhoneNo = User.PhoneNumber;
-                    bidding.Email = User.Email;
-                    bidding.Address = User.Address;
- 
-                    bidding.Price = Price;
-                    bidding.Message = Message;
-
-                    bidding.PostedOn = DateTime.Now;
-                    bidding.PostedBy = Username;
-                    bidding.UserName = Username;
+                        bidding.UserId = UserId;
 
 
+                        var User = db.AspNetUsers.Find(UserId);
 
-                    db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
-                    db.SaveChanges();
+                        bidding.FName = User.FirstName;
+                        bidding.MName = User.MiddleName;
+                        bidding.LName = User.LastName;
+                        bidding.PhoneNo = User.PhoneNumber;
+                        bidding.Email = User.Email;
+                        bidding.Address = User.Address;
 
-                    TempData["Message"] = "You have successfully bid on" + bidding.Title;
-                    TempData["MessageValue"] = 1;
+                        bidding.Price = Price;
+                        bidding.Message = Message;
+
+                        bidding.PostedOn = DateTime.Now;
+                        bidding.PostedBy = Username;
+                        bidding.UserName = Username;
+
+
+                        var body = "<p><b>Dear " + property_owner.FirstName.ToString() + ", </b></p><p>" + User.FirstName + " had just bid on your property </p><b>"
+               + property_detail.Title + "</b><p><br/> <br/> Details from "+ User.FirstName+" "+ User.LastName+"<br/> "+ Message + "<br/> <br/>Please visit your Online Real Estate Portal to view more. </p><p><b>Email : </b>"
+               + User.Email+"</p> <p><b>To contact OnlineRealEstate: </b>" + fromemail
+               + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
+
+
+
+                        db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
+                        db.SaveChanges();
+
+                        //sending email
+                        MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
+                        objMail.IsBodyHtml = true;
+                        NetworkCredential objNC = new NetworkCredential(fromemail, pw);
+                        SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
+                        objsmtp.EnableSsl = true;
+                        objsmtp.Credentials = objNC;
+                        objsmtp.Send(objMail);
+
+                        TempData["Message"] = "You have successfully bid on" + bidding.Title;
+                        TempData["MessageValue"] = 1;
+                    }
+                    else
+                    {
+                        TempData["Message"] = "You have already bid on this Property";
+                        TempData["MessageValue"] = 0;
+                    }
                 }
-                else
-                {
-                    TempData["Message"] = "You have already bid on this Property" ;
-                    TempData["MessageValue"] = 0;
-                }
+            }else //property price inserted less than mentioned price
+            {
+                TempData["Message"] = "Bid Amount Has to be Higher than mentioned price.";
+                TempData["MessageValue"] = 0;
             }
             
             return RedirectToAction("Detail", "Property", new { id = PropertyId });
