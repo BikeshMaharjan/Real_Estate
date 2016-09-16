@@ -34,9 +34,19 @@ namespace AngularMVC.UI.Controllers
             ViewBag.Recommended = db.Property_Detail.Where(x => x.Category == Category).Take(6).ToList();
             Property_Detail property_Detail = db.Property_Detail.Find(id);
             var expired_date = db.Property_Detail.Find(id).ExpiredDate;
+            var start_date = property_Detail.PublishedDate;
             var now = DateTime.Now;
-
-            if(now > expired_date)
+            if(now < start_date)
+            {
+                property_Detail.isbiddingstarted = false;
+                db.Entry(property_Detail).State = System.Data.Entity.EntityState.Modified;
+            }
+            else if (now > start_date)
+            {
+                property_Detail.isbiddingstarted = true;
+                db.Entry(property_Detail).State = System.Data.Entity.EntityState.Modified;
+            }
+            else if(now > expired_date)
             {
                 property_Detail.AllowAuction = false;
                 db.Entry(property_Detail).State = System.Data.Entity.EntityState.Modified;

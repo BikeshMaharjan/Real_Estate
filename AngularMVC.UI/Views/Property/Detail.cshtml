@@ -8,6 +8,7 @@
 <section>
     
     <input type="hidden" id="test" value="@Model.ExpiredDate"/>
+    <input type="hidden" id="start" value="@Model.PublishedDate" />
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
@@ -70,11 +71,13 @@
                             
                            
                             @{
-                                if (Model.AllowAuction == true)
+                                if (Model.isbiddingstarted != false)
                                 {
-                                    if (Model.IsApplyLocked != true)
+                                    if (Model.AllowAuction == true)
                                     {
-                                    <h3 style="color:#EE3233">
+                                        if (Model.IsApplyLocked != true)
+                                        {
+                                    <h3 style="color:#66B67B">
                                         Bidding Expires On: <b>
                                             <h2>
                                                 <span id="expire_date" class="badge">
@@ -84,34 +87,50 @@
                                         </b>
                                     </h3>
                                     <br />
-                                    
+
                                         <h1><span id="bid_timer" style="color:#f15f0a"></span></h1>
+                                        }
+                                        else
+                                        {
+                                        <h1 style="color:#EE3233"><b>Property SOLD.</b></h1>
+                                        }
+
                                     }
                                     else
                                     {
-                                        <h1><b>Property SOLD.</b></h1>
-                                    }
-
-                                }
-                                else
-                                {
-                                    <h3> Bidding Has Expired!!! on </h3> <b>
+                                    <h3 style="color:#3E819E"> Bidding Has Expired!!! on </h3> <b>
                                     <h2>
                                         <span id="expire_date" class="badge">
                                             @Model.ExpiredDate
                                         </span>
                                     </h2>
                                     </b>
+                                    }
+                                }
+                                else//bidding has not started yet
+                                {
+                                    <h3 style="color:#66B67B">
+                                        Bidding Will Start on: <b>
+                                            <h2>
+                                                <span id="expire_date" class="badge">
+                                                    @Model.PublishedDate
+                                                </span>
+                                            </h2>
+                                        </b>
+                                    </h3>
+                                    <br />
+
+                                    <h1><span id="bid_timer" style="color:#f15f0a"></span></h1>
                                 }
                             }
 
-                           
-                           
+
+
 
 
                             <h2>@Model.Title</h2>
                             <p>Address : @Model.City, @Model.Country</p>
-                            <img src="~/Themes/site/images/product-details/rating.png" alt="@Model.Title" />
+                            @*<img src="~/Themes/site/images/product-details/rating.png" alt="@Model.Title" />*@
                             <div>
                                 <span>
                                     Rs. @Convert.ToInt32(Model.Price)
@@ -130,7 +149,7 @@
                                     }
                                     else
                                     {
-                                        if (Model.AllowAuction == true)
+                                        if (Model.AllowAuction == true && Model.isbiddingstarted != false)
                                         {
                                             <button class="btn btn-default cart" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                                 BID NOW
@@ -260,7 +279,7 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.textContent = days + " :" + hours + " :" + minutes + " :" + seconds;
+                display.textContent = days + "d :" + hours + " :" + minutes + " :" + seconds;
 
                 if (diff <= 0) {
                     // add one second so that the count down starts at the full duration
@@ -274,12 +293,17 @@
         }
 
 
-           var test = document.getElementById('test').value;
-           var exp = new Date(test);
-           var now = new Date();
-           if (exp < now) {
-               var difference = Math.abs(now - exp) / 1000;
-           } else {
+        var test = document.getElementById('test').value;
+        var start = document.getElementById('start').value;
+        var exp = new Date(test);
+        var pub = new Date(start);
+        var now = new Date();
+        if (now < pub) {
+            var difference = Math.abs(now - pub) / 1000;
+            display = document.querySelector('#bid_timer');
+            startTimer(difference, display);
+        }
+         else if(now <= exp && now >= pub){
                var difference = Math.abs(exp - now) / 1000;
                display = document.querySelector('#bid_timer');
                startTimer(difference, display);

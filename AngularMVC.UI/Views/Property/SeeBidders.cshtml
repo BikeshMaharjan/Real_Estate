@@ -27,14 +27,14 @@
                         <td class="image">User</td>
                         <td class="description">Bidding Price</td>
                         <td class="description">Date</td>
-                        <td></td>
+                        <td class="Button"></td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in ViewBag.Bidders)
                     {
                         <tr>
-                            <td class="cart_product">
+                            <td class="description">
                                 <h3>@item.FName @item.MName @item.LName</h3>
                                 <i class="fa fa-phone">&nbsp;</i>@item.PhoneNo
                                 <br />
@@ -51,15 +51,15 @@
 
                                 <p><i class="fa fa-calendar">&nbsp;</i> @Convert.ToDateTime(item.PostedOn).ToShortDateString()</p>
                             </td>
-                            <td class="cart_delete">
+                            <td class="cart_description">
                                 @{
                                     if (item.IsSold == true)
                                     {
-                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-money">&nbsp;</i> Sold</a>
+                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-money" style="margin-left:20px;margin-bottom:25px">&nbsp;</i> Sold</a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-users">&nbsp;</i> Sell Now</a>
+                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary" style="margin-left:20px;margin-bottom:25px"><i class="fa fa-users">&nbsp;</i> Sell Now</a>
                                     }
                                 }
 

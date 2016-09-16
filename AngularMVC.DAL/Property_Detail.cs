@@ -60,5 +60,7 @@ namespace AngularMVC.DAL
         public string City { get; set; }
         public string Street { get; set; }
         public string HouseNo { get; set; }
+
+        public Nullable<bool> isbiddingstarted { get; set; }
     }
 }

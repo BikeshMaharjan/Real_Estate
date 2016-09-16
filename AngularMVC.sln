@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularMVC.UI", "AngularMVC.UI\AngularMVC.UI.csproj", "{0BD89336-EA85-483C-83DA-7A20B726CFE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularMVC.DAL", "AngularMVC.DAL\AngularMVC.DAL.csproj", "{3C65528B-F2E8-4CBA-A4C8-E2008FE2B1FC}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{06272A41-E602-4FE4-A83F-4F102B9EA2EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3C65528B-F2E8-4CBA-A4C8-E2008FE2B1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C65528B-F2E8-4CBA-A4C8-E2008FE2B1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C65528B-F2E8-4CBA-A4C8-E2008FE2B1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06272A41-E602-4FE4-A83F-4F102B9EA2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06272A41-E602-4FE4-A83F-4F102B9EA2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06272A41-E602-4FE4-A83F-4F102B9EA2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06272A41-E602-4FE4-A83F-4F102B9EA2EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

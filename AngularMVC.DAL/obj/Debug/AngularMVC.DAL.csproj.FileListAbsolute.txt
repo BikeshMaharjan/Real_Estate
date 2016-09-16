@@ -57,3 +57,13 @@ C:\Users\BKS\Documents\Visual Studio 2015\Projects\working\RealEstate-copy\Angul
 C:\Users\BKS\Documents\Visual Studio 2015\Projects\working\RealEstate-copy\AngularMVC.DAL\obj\Debug\AngularMVC.DAL.csprojResolveAssemblyReference.cache
 C:\Users\BKS\Documents\Visual Studio 2015\Projects\working\RealEstate-copy\AngularMVC.DAL\obj\Debug\AngularMVC.DAL.dll
 C:\Users\BKS\Documents\Visual Studio 2015\Projects\working\RealEstate-copy\AngularMVC.DAL\obj\Debug\AngularMVC.DAL.pdb
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\AngularMVC.DAL.dll.config
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\AngularMVC.DAL.dll
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\AngularMVC.DAL.pdb
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\EntityFramework.dll
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\EntityFramework.xml
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\obj\Debug\AngularMVC.DAL.csprojResolveAssemblyReference.cache
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\obj\Debug\AngularMVC.DAL.dll
+C:\Users\BKS\Documents\Visual Studio 2015\Projects\working1\AngularMVC.DAL\obj\Debug\AngularMVC.DAL.pdb

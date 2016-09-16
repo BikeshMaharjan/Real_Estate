@@ -34,8 +34,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="cart_product">
-                                <a href=""><img src="@Url.Content("~/Upload/Property/thumb/" + @item.img1)" height="60" alt="@item.Title" title="@item.Title"></a>
+                            <td class="ImagePreviewBox" width="100">
+                                <img src="@Url.Content("~/Upload/Property/thumb/" + @item.img1)" height="80" width="100" alt="@item.Title" title="@item.Title" style="vertical-align:middle">
                             </td>
                             <td class="cart_description">
                                 <h4><a href="">@item.Title</a></h4>
@@ -44,8 +44,8 @@
                             <td class="cart_price">
                                 <p>@item.Zone @item.District @item.City</p>
                             </td>
-                            <td class="cart_delete">
-                                <a  href="@Url.Action("SeeBidders","Property", new { area = "", PropertyId = item.PropertyId})" class="btn btn-sm btn-primary"><i class="fa fa-users">&nbsp;</i> See Bidders</a>
+                            <td class="Button">
+                                <a  href="@Url.Action("SeeBidders","Property", new { area = "", PropertyId = item.PropertyId})" class="btn btn-sm btn-primary" style="margin-left:20px;margin-bottom:25px;"><i class="fa fa-users">&nbsp;</i> See Bidders</a>
                             </td>
                         </tr>
                     }
