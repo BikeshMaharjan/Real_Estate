@@ -104,10 +104,10 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control"} })
+                                    @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control"} })
                                     @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -271,7 +271,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.NO_Of_Car_For_Parking, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.NO_Of_Car_For_Parking, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.NO_Of_Car_For_Parking, new { htmlAttributes = new { @class = "form-control" , placeholder="No. of Car Parking"} })
                                     @Html.ValidationMessageFor(model => model.NO_Of_Car_For_Parking, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -279,7 +279,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.NO_Of_Bike_For_Parking, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.NO_Of_Bike_For_Parking, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.NO_Of_Bike_For_Parking, new { htmlAttributes = new { @class = "form-control", placeholder="No. of Bike Parking" } })
                                     @Html.ValidationMessageFor(model => model.NO_Of_Bike_For_Parking, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -288,7 +288,7 @@
                                 @Html.LabelFor(model => model.Compound, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     <div class="checkbox">
-                                        @Html.EditorFor(model => model.Compound)
+                                        @Html.EditorFor(model => model.Compound, new { htmlAttributes = new { @class = "form-control", placeholder = "Compound" } })
                                         @Html.ValidationMessageFor(model => model.Compound, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@
                                 @Html.LabelFor(model => model.Under_Ground_Water_Tank, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     <div class="checkbox">
-                                        @Html.EditorFor(model => model.Under_Ground_Water_Tank)
+                                        @Html.EditorFor(model => model.Under_Ground_Water_Tank, new { htmlAttributes = new { @class = "form-control", placeholder = "Underground Water Tank" } })
                                         @Html.ValidationMessageFor(model => model.Under_Ground_Water_Tank, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -307,7 +307,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.FloorType, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.FloorType, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.FloorType, new { htmlAttributes = new { @class = "form-control", placeholder= "Floor Type" } })
                                     @Html.ValidationMessageFor(model => model.FloorType, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -315,7 +315,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.HouseType, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.HouseType, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.HouseType, new { htmlAttributes = new { @class = "form-control", placeholder="House Type" } })
                                     @Html.ValidationMessageFor(model => model.HouseType, "", new { @class = "text-danger" })
                                 </div>
                             </div>

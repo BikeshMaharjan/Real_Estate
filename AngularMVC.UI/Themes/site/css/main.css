@@ -12,6 +12,10 @@ body {
   position: relative;
   font-weight:400px;
 }
+ #map-canvas {
+            width: 400px; /* map width */
+            height: 350px; /* map height */
+        }
 
 ul li {
   list-style: none;

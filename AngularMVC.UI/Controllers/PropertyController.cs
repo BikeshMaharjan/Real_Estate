@@ -173,15 +173,21 @@ namespace AngularMVC.UI.Controllers
 
                         db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
                         db.SaveChanges();
-
-                        //sending email
-                        MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
-                        objMail.IsBodyHtml = true;
-                        NetworkCredential objNC = new NetworkCredential(fromemail, pw);
-                        SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
-                        objsmtp.EnableSsl = true;
-                        objsmtp.Credentials = objNC;
-                        objsmtp.Send(objMail);
+                        try
+                        {
+                            //sending email
+                            MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
+                            objMail.IsBodyHtml = true;
+                            NetworkCredential objNC = new NetworkCredential(fromemail, pw);
+                            SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
+                            objsmtp.EnableSsl = true;
+                            objsmtp.Credentials = objNC;
+                            objsmtp.Send(objMail);
+                        }catch(Exception ex)
+                        {
+                            throw new ApplicationException("No Internet Connectivity:", ex);
+                        }
+                       
 
                         TempData["Message"] = "You have successfully bid on" + bidding.Title;
                         TempData["MessageValue"] = 1;
