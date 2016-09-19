@@ -2976,6 +2976,7 @@
     <Content Include="Views\Home\PartialSoldProducts.cshtml" />
     <Content Include="Views\Shared\_Layout_all_property.cshtml" />
     <Content Include="Views\Shared\_Layout_all.cshtml" />
+    <Content Include="Views\Property\DetailBidders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

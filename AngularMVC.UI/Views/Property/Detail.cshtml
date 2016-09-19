@@ -196,6 +196,24 @@
                                     }
 
                                 }
+                                <a href="@Url.Action("DetailBidders","Property", new { area = "", PropertyId = Model.PropertyId})" class="btn btn-default cart" type="button"> See Bidders </a>
+
+                                @*<div class="collapse" id="bidderscollapseExample">
+                                    <div class="well">
+                                        <table class="table table-condensed table-hover table-bordered table-responsive">
+                                            <thead>
+                                                <tr class="cart_menu">
+                                                    <td class="image">User</td>
+                                                    <td class="description">Bidding Price</td>    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>*@
+                                
                                 
                                 <div class="collapse" id="collapseExample">
                                     <div class="well">
@@ -204,7 +222,7 @@
                                             
                                             <div class="form-group">
                                                 <div class="col-lg-12">
-                                                    <input type="number" value="@Convert.ToInt32(Model.Price)" class="form-control" id="Price" name="Price" />
+                                                    <input type="number" value="@Convert.ToInt32(Model.Price)" class="form-control" id="Price" name="Price" required="required"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">

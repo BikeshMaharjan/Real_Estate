@@ -1,12 +1,12 @@
 ﻿@model AngularMVC.DAL.Property_Detail
 
 @{
-    ViewBag.Title = "SeeBidders";
-    Layout = "~/Views/Shared/_LayoutUserProfile.cshtml";
+    ViewBag.Title = "DetailBidders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section id="cart_items">
-    <div class="row">
+    <div class="row" style="margin-left:100px;margin-right:100px;">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
@@ -16,7 +16,7 @@
             </ol>
         </div><!--/breadcrums-->
 
-        
+
         <div class="review-payment">
             <h2><b>No of Bidders </b><span class="badge">@ViewBag.Bidders.Count</span></h2>
         </div>
@@ -27,7 +27,6 @@
                         <td class="image">User</td>
                         <td class="description">Bidding Price</td>
                         <td class="description">Date</td>
-                        <td class="Button"></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,20 +50,7 @@
 
                                 <p><i class="fa fa-calendar">&nbsp;</i> @Convert.ToDateTime(item.PostedOn).ToShortDateString()</p>
                             </td>
-                            <td class="cart_description">
-                                @{
-                                    if (item.IsSold == true)
-                                    {
-                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-money" style="margin-left:20px;margin-bottom:25px">&nbsp;</i> Sold</a>
-                                    }
-                                    else
-                                    {
-                                        <a href="@Url.Action("SellNow","Property", new { area = "", id = item.Id})" class="btn btn-sm btn-primary" style="margin-left:20px;margin-bottom:25px"><i class="fa fa-users">&nbsp;</i> Sell Now</a>
-                                    }
-                                }
-
-
-                            </td>
+                            
                         </tr>
                                     }
 
@@ -74,3 +60,4 @@
 
     </div>
 </section>
+

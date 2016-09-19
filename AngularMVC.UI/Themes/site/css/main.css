@@ -12,6 +12,11 @@ body {
   position: relative;
   font-weight:400px;
 }
+
+texbox:invalid::after{
+    border: 1px solid red;
+}
+
  #map-canvas {
             width: 400px; /* map width */
             height: 350px; /* map height */

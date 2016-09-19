@@ -11,44 +11,52 @@
         @Html.AntiForgeryToken()
         <h4 class="item h4">Create a new account</h4>
         <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @*@html.validationsummary("", new { @class = "text-danger" })*@
 
    
     <div class="item">
         <div class="form-group">
             @*@Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-2">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control text-box single-line", placeholder = "First Name", maxlength = "128" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control text-box single-line", placeholder = "First Name", maxlength = "128", required = "required" })
+                @Html.ValidationMessageFor(m => m.FirstName)
             </div>
 
 
             @*@Html.LabelFor(m => m.MiddleName, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-2">
                 @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", placeholder = "Middle Name", maxlength = "128" })
+                
             </div>
 
 
             @*@Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-2">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", maxlength = "128" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name", maxlength = "128", required = "required" })
+                @Html.ValidationMessageFor(m => m.LastName)
             </div>
         </div>
         <div class="form-group">
             @*@Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-3">
                 @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "Address(e.g. Bhaisipati, Kathmandu)", maxlength = "128" })
+                @Html.ValidationMessageFor(m => m.Address)
             </div>
 
             @*@Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-3">
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "Phone (e.g.+977 9843423594)", maxlength = "15", type = "tel", required = "required" })
-            </div>
+                @Html.ValidationMessageFor(m => m.PhoneNumber)
+             </div>
         </div>
 
         <div class="form-group">
             @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-6">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", maxlength = "128" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", maxlength = "128"})
+                <span style="color:red">
+                    @Html.ValidationMessageFor(m => m.Email)
+                </span>
             </div>
         </div>
         <div class="form-group">
@@ -63,6 +71,9 @@
             @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-2">
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                <span style="color:red">
+                    @Html.ValidationMessageFor(m => m.Password)
+                </span>
             </div>
 
 
@@ -70,6 +81,9 @@
             @*@Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })*@
             <div class="col-md-2">
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                <span style="color:red">
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    </span>
             </div>
         </div>
         <div class="form-group">
@@ -80,6 +94,4 @@
     </div>
     }
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+   
