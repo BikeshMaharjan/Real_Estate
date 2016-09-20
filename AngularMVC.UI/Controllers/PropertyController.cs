@@ -145,123 +145,194 @@ namespace AngularMVC.UI.Controllers
 
                  if (ModelState.IsValid)
                 {
-                    /*  if (checkBidder == null)
-                      {
-                          Bid_Property_User bidding = new Bid_Property_User();
-                          bidding.Id = Guid.NewGuid().ToString();
+                    //--------------------------
+                    //single time biddding
+                    //---------------------------
+                    /*       if (checkBidder == null)
+                           {
+                               Bid_Property_User bidding = new Bid_Property_User();
+                               bidding.Id = Guid.NewGuid().ToString();
 
-                          bidding.PropertyId = PropertyId;
+                               bidding.PropertyId = PropertyId;
 
-                          bidding.UserId = UserId;
-
-
-                          var User = db.AspNetUsers.Find(UserId);
-
-                          bidding.FName = User.FirstName;
-                          bidding.MName = User.MiddleName;
-                          bidding.LName = User.LastName;
-                          bidding.PhoneNo = User.PhoneNumber;
-                          bidding.Email = User.Email;
-                          bidding.Address = User.Address;
-
-                          bidding.Price = Price;
-                          bidding.Message = Message;
-
-                          bidding.PostedOn = DateTime.Now;
-                          bidding.PostedBy = Username;
-                          bidding.UserName = Username;
+                               bidding.UserId = UserId;
 
 
-                          var body = "<p><b>Dear " + property_owner.FirstName.ToString() + ", </b></p><p>" + User.FirstName + " had just bid on your property </p><b>"
-                 + property_detail.Title + "</b><p><br/> <br/> Details from " + User.FirstName + " " + User.LastName + "<br/> " + Message + "<br/> <br/>Please visit your Online Real Estate Portal to view more. </p><p><b>Email : </b>"
-                 + User.Email + "</p> <p><b>To contact OnlineRealEstate: </b>" + fromemail
-                 + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
+                               var User = db.AspNetUsers.Find(UserId);
+
+                               bidding.FName = User.FirstName;
+                               bidding.MName = User.MiddleName;
+                               bidding.LName = User.LastName;
+                               bidding.PhoneNo = User.PhoneNumber;
+                               bidding.Email = User.Email;
+                               bidding.Address = User.Address;
+
+                               bidding.Price = Price;
+                               bidding.Message = Message;
+
+                               bidding.PostedOn = DateTime.Now;
+                               bidding.PostedBy = Username;
+                               bidding.UserName = Username;
 
 
-
-                          db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
-                          db.SaveChanges();
-                          try
-                          {
-                              //sending email
-                              MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
-                              objMail.IsBodyHtml = true;
-                              NetworkCredential objNC = new NetworkCredential(fromemail, pw);
-                              SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
-                              objsmtp.EnableSsl = true;
-                              objsmtp.Credentials = objNC;
-                              objsmtp.Send(objMail);
-                          }
-                          catch (Exception ex)
-                          {
-                              throw new ApplicationException("No Internet Connectivity:", ex);
-                          }
-
-
-                          TempData["Message"] = "You have successfully bid on" + bidding.Title;
-                          TempData["MessageValue"] = 1;
-                      }
-                      else
-                      {
-                          TempData["Message"] = "You have already bid on this Property";
-                          TempData["MessageValue"] = 0;
-                      }*/
-
-                    Bid_Property_User bidding = new Bid_Property_User();
-                    bidding.Id = Guid.NewGuid().ToString();
-
-                    bidding.PropertyId = PropertyId;
-
-                    bidding.UserId = UserId;
-
-
-                    var User = db.AspNetUsers.Find(UserId);
-
-                    bidding.FName = User.FirstName;
-                    bidding.MName = User.MiddleName;
-                    bidding.LName = User.LastName;
-                    bidding.PhoneNo = User.PhoneNumber;
-                    bidding.Email = User.Email;
-                    bidding.Address = User.Address;
-
-                    bidding.Price = Price;
-                    bidding.Message = Message;
-
-                    bidding.PostedOn = DateTime.Now;
-                    bidding.PostedBy = Username;
-                    bidding.UserName = Username;
-
-
-                    var body = "<p><b>Dear " + property_owner.FirstName.ToString() + ", </b></p><p>" + User.FirstName + " had just bid on your property </p><b>"
-           + property_detail.Title + "</b><p><br/> <br/> Details from " + User.FirstName + " " + User.LastName + "<br/> " + Message + "<br/> <br/>Please visit your Online Real Estate Portal to view more. </p><p><b>Email : </b>"
-           + User.Email + "</p> <p><b>To contact OnlineRealEstate: </b>" + fromemail
-           + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
+                               var body = "<p><b>Dear " + property_owner.FirstName.ToString() + ", </b></p><p>" + User.FirstName + " had just bid on your property </p><b>"
+                      + property_detail.Title + "</b><p><br/> <br/> Details from " + User.FirstName + " " + User.LastName + "<br/> " + Message + "<br/> <br/>Please visit your Online Real Estate Portal to view more. </p><p><b>Email : </b>"
+                      + User.Email + "</p> <p><b>To contact OnlineRealEstate: </b>" + fromemail
+                      + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
 
 
 
-                    db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
-                    db.SaveChanges();
-                    //try
-                    //{
-                    //    //sending email
-                    //    MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
-                    //    objMail.IsBodyHtml = true;
-                    //    NetworkCredential objNC = new NetworkCredential(fromemail, pw);
-                    //    SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
-                    //    objsmtp.EnableSsl = true;
-                    //    objsmtp.Credentials = objNC;
-                    //    objsmtp.Send(objMail);
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    throw new ApplicationException("No Internet Connectivity:", ex);
-                    //}
+                               db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
+                               db.SaveChanges();
+                               try
+                               {
+                                   //sending email
+                                   MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
+                                   objMail.IsBodyHtml = true;
+                                   NetworkCredential objNC = new NetworkCredential(fromemail, pw);
+                                   SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
+                                   objsmtp.EnableSsl = true;
+                                   objsmtp.Credentials = objNC;
+                                   objsmtp.Send(objMail);
+                               }
+                               catch (Exception ex)
+                               {
+                                   throw new ApplicationException("No Internet Connectivity:", ex);
+                               }
 
 
-                    TempData["Message"] = "You have successfully bid on" + bidding.Title;
-                    TempData["MessageValue"] = 1;
-                
-            }
+                               TempData["Message"] = "You have successfully bid on" + bidding.Title;
+                               TempData["MessageValue"] = 1;
+                           }
+                           else
+                           {
+                               TempData["Message"] = "You have already bid on this Property";
+                               TempData["MessageValue"] = 0;
+                           }*/
+
+                        if (checkBidder != null)
+                        {
+                            
+                            //Bid_Property_User property_user = db.Bid_Property_User.Find(checkBidder.UserName);
+                           db.Bid_Property_User.Remove(checkBidder);
+                            db.SaveChanges();
+                        }
+
+                        Bid_Property_User bidding = new Bid_Property_User();
+                        bidding.Id = Guid.NewGuid().ToString();
+
+                        bidding.PropertyId = PropertyId;
+
+                        bidding.UserId = UserId;
+
+
+                        var User = db.AspNetUsers.Find(UserId);
+
+                        bidding.FName = User.FirstName;
+                        bidding.MName = User.MiddleName;
+                        bidding.LName = User.LastName;
+                        bidding.PhoneNo = User.PhoneNumber;
+                        bidding.Email = User.Email;
+                        bidding.Address = User.Address;
+
+                        bidding.Price = Price;
+                        bidding.Message = Message;
+
+                        bidding.PostedOn = DateTime.Now;
+                        bidding.PostedBy = Username;
+                        bidding.UserName = Username;
+
+
+                        var body = "<p><b>Dear " + property_owner.FirstName.ToString() + ", </b></p><p>" + User.FirstName + " had just bid on your property </p><b>"
+               + property_detail.Title + "</b><p><br/> <br/> Details from " + User.FirstName + " " + User.LastName + "<br/> " + Message + "<br/> <br/>Please visit your Online Real Estate Portal to view more. </p><p><b>Email : </b>"
+               + User.Email + "</p> <p><b>To contact OnlineRealEstate: </b>" + fromemail
+               + "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
+
+
+
+                        db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
+                        db.SaveChanges();
+                        /* try
+                         {
+                             //sending email
+                             MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
+                             objMail.IsBodyHtml = true;
+                             NetworkCredential objNC = new NetworkCredential(fromemail, pw);
+                             SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
+                             objsmtp.EnableSsl = true;
+                             objsmtp.Credentials = objNC;
+                             objsmtp.Send(objMail);
+                         }
+                         catch (Exception ex)
+                         {
+                             throw new ApplicationException("No Internet Connectivity:", ex);
+                         }*/
+
+
+                        TempData["Message"] = "You have successfully bid on" + bidding.Title;
+                        TempData["MessageValue"] = 1;
+                    
+                   
+
+                    //----------------------------------------
+                    //multiple times bidding
+                    //-----------------------------------------
+
+                    //         Bid_Property_User bidding = new Bid_Property_User();
+                    //         bidding.Id = Guid.NewGuid().ToString();
+
+                    //         bidding.PropertyId = PropertyId;
+
+                    //         bidding.UserId = UserId;
+
+
+                    //         var User = db.AspNetUsers.Find(UserId);
+
+                    //         bidding.FName = User.FirstName;
+                    //         bidding.MName = User.MiddleName;
+                    //         bidding.LName = User.LastName;
+                    //         bidding.PhoneNo = User.PhoneNumber;
+                    //         bidding.Email = User.Email;
+                    //         bidding.Address = User.Address;
+
+                    //         bidding.Price = Price;
+                    //         bidding.Message = Message;
+
+                    //         bidding.PostedOn = DateTime.Now;
+                    //         bidding.PostedBy = Username;
+                    //         bidding.UserName = Username;
+
+
+                    //         var body = "<p><b>Dear " + property_owner.FirstName.ToString() + ", </b></p><p>" + User.FirstName + " had just bid on your property </p><b>"
+                    //+ property_detail.Title + "</b><p><br/> <br/> Details from " + User.FirstName + " " + User.LastName + "<br/> " + Message + "<br/> <br/>Please visit your Online Real Estate Portal to view more. </p><p><b>Email : </b>"
+                    //+ User.Email + "</p> <p><b>To contact OnlineRealEstate: </b>" + fromemail
+                    //+ "</p><br /><br /><p><b>Regards,<br />Online Real Estate</b><br />OnlineRealEstate Pvt. Ltd.<br />Tel: +977 1 2011302 / 2011303 / 2010311<br /></p>";
+
+
+
+                    //         db.Entry(bidding).State = System.Data.Entity.EntityState.Added;
+                    //         db.SaveChanges();
+                    //         try
+                    //         {
+                    //             //sending email
+                    //             MailMessage objMail = new MailMessage(fromemail, to_email, sub, body);
+                    //             objMail.IsBodyHtml = true;
+                    //             NetworkCredential objNC = new NetworkCredential(fromemail, pw);
+                    //             SmtpClient objsmtp = new SmtpClient("smtp.live.com", 587); // for hotmail
+                    //             objsmtp.EnableSsl = true;
+                    //             objsmtp.Credentials = objNC;
+                    //             objsmtp.Send(objMail);
+                    //         }
+                    //         catch (Exception ex)
+                    //         {
+                    //             throw new ApplicationException("No Internet Connectivity:", ex);
+                    //         }
+
+
+                    //         TempData["Message"] = "You have successfully bid on" + bidding.Title;
+                    //         TempData["MessageValue"] = 1;
+
+                }
             }else //property price inserted less than mentioned price
             {
                 TempData["Message"] = "Bid Amount Has to be Higher than mentioned price.";
